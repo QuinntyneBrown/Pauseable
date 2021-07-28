@@ -1,0 +1,16 @@
+{
+  "domainNamespace": "Pauseable.Api",
+  "applicationNamespace": "Pauseable.Api",
+  "infrastructureNamespace": "Pauseable.Api",
+  "apiNamespace": "Pauseable.Api",
+  "domainDirectory": "C:\\Projects\\Pauseable\\src\\Pauseable.Api",
+  "applicationDirectory": "C:\\Projects\\Pauseable\\src\\Pauseable.Api",
+  "infrastructureDirectory": "C:\\Projects\\Pauseable\\src\\Pauseable.Api",
+  "apiDirectory": "C:\\Projects\\Pauseable\\src\\Pauseable.Api",
+  "path": "C:\\Projects\\Pauseable",
+  "dbContext": "PauseableDbContext",
+  "sourceFolder": "src",
+  "resources": [
+    "Notification"
+  ]
+}
