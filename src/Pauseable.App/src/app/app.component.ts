@@ -8,40 +8,34 @@ import { switchMap, tap } from 'rxjs/operators';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  private _pause$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor() {
+    const stream$ = this._connect()
 
-    const obs$ = new Observable(subscriber => {
-
-      var source = new EventSource(`https://localhost:5001/api/notification/queue`);
-
-      source.onmessage = function (event) {
-        subscriber.next(event)
-      };
-
-      source.onopen = function(event) {
-
-      };
-
-      source.onerror = function(event) {
-      }
-
-    });
-
-    const pauseableStream = this.pause$.pipe(switchMap(pause => pause ? NEVER : obs$ ));
-
-    pauseableStream
-    .pipe(
-      tap(x => console.log(x))
-    )
+    this._pause$.pipe(
+      switchMap(pause => pause ? NEVER : stream$ ),
+      tap(notification => console.log(notification))
+      )
     .subscribe();
 
   }
 
-  public pause$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  public start() {
+    this._pause$.next(false);
+  }
 
-  public pause() {
-    this.pause$.next(!this.pause$.value);
+  public stop() {
+    this._pause$.next(true);
+  }
+
+  private _connect() {
+    return new Observable(subscriber => {
+      new EventSource(`https://localhost:5001/api/notification/queue`)
+      .onmessage = function (event) {
+        subscriber.next(event)
+      };
+    });
   }
 
 }
