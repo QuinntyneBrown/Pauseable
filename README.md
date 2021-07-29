@@ -17,4 +17,11 @@ dotnet build
 dotnet run
 ```
 3. Open your browser to: `https://localhost:5001`.
+4. 4. Open another terminal such as **PowerShell**, **Command Prompt**, or **bash** and navigate to the `src/Pauseable
+.App` folder
+5. Run the following `angular cli (ng)` command:
+```sh
+ng serve
+```
+6. Open your browser to: `https://localhost:4200`.
 
